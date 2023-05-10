@@ -1,0 +1,19 @@
+.place {
+  position: relative;
+
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  color: #000000;
+
+  background: #FFFFFF;
+  border-radius: 10px;
+
+  width: 282px;
+  height: 361px;
+  box-sizing: border-box;
+}

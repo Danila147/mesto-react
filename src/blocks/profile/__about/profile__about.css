@@ -1,0 +1,27 @@
+.profile__about {
+  margin: 0;
+  padding-bottom: 36px;
+
+  max-width: 85%;
+
+  font-size: 14px;
+  line-height: 1.2;
+  text-align: center;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media(min-width: 768px) {
+  .profile__about {
+    text-align: start;
+    padding: 0;
+  }
+}
+
+@media(min-width: 1280px) {
+  .profile__about {
+    font-size: 18px;
+  }
+}

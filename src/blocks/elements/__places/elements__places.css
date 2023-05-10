@@ -1,0 +1,26 @@
+.elements__places {
+  list-style-type: none;
+
+  margin: 0 auto;
+  padding: 0;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 282px);
+  grid-template-rows: repeat(auto-fit, 361px);
+  gap: 17px;
+
+  max-width: 282px;
+}
+
+
+@media(min-width: 656px) {
+  .elements__places {
+    max-width: 581px;
+  }
+}
+
+@media(min-width: 1280px) {
+  .elements__places {
+    max-width: 880px;
+  }
+}

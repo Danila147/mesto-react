@@ -1,0 +1,19 @@
+.header-position {
+  margin: 28px 0 42px;
+  padding: 0 27px;
+}
+
+@media(min-width: 768px) {
+  .header-position {
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media(min-width: 1280px) {
+  .header-position {
+    margin: 45px auto 40px;
+    padding: 0 0 41px;
+  }
+}

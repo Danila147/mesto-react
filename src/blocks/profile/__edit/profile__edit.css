@@ -1,0 +1,25 @@
+.profile__edit {
+  all: unset;
+
+  background-image: url('../../../images/profile-editButton.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  width: 18px;
+  height: 18px;
+}
+
+.profile__edit:hover {
+  opacity: .6;
+  cursor: pointer;
+}
+
+@media(min-width: 1280px) {
+  .profile__edit {
+    margin-top: 8px;
+
+    width: 24px;
+    height: 24px;
+  }
+}

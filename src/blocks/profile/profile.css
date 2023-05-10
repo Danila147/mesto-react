@@ -1,0 +1,23 @@
+.profile {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  color: #FFFFFF;
+}
+
+@media(min-width: 768px) {
+  .profile {
+    flex-direction: row;
+    gap: 20px;
+  }
+}
+
+@media(min-width: 1280px) {
+  .profile {
+    gap: 30px;
+  }
+}

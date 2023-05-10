@@ -1,0 +1,23 @@
+.footer-position {
+  margin: 0 auto 36px;
+  width: calc(100% - 19px * 2);
+}
+
+@media(min-width: 425px) {
+  .footer-position {
+    width: calc(100% - 38px * 2);
+  }
+}
+
+@media(min-width: 768px) {
+  .footer-position {
+    width: calc(100% - 76px * 2);
+  }
+}
+
+@media(min-width: 1024px) {
+  .footer-position {
+    margin-bottom: 60px;
+    width: calc(100% - 200px * 2);
+  }
+}
