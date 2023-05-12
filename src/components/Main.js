@@ -1,23 +1,11 @@
 import React from 'react';
 import avatar from '../images/profile.jpg';
 
-function handleEditAvatarClick() {
-  document.querySelector('.popup_avatar-edit').classList.add('popup__opened');
-}
-
-function handleEditProfileClick() {
-  document.querySelector('.popup_profile-edit').classList.add('popup__opened');
-}
-
-function handleAddPlaceClick() {
-  document.querySelector('.popup_card-add').classList.add('popup__opened');
-}
-
-function Main() {
+function Main({ onEditAvatar, onEditProfile, onAddPlace }) {
   return (
     <main className='content'>
       <section className='profile profile-position'>
-        <div className='profile__avatar' onClick={handleEditAvatarClick}>
+        <div className='profile__avatar' onClick={onEditAvatar}>
           <img src={avatar} alt='фото профиля' className='profile__image' />
         </div>
         <div className='profile__info'>
@@ -26,7 +14,7 @@ function Main() {
             <button
               type='button'
               className='profile__edit'
-              onClick={handleEditProfileClick}
+              onClick={onEditProfile}
             ></button>
           </div>
           <p className='profile__about'>Веб-разработчик</p>
@@ -34,7 +22,7 @@ function Main() {
         <button
           type='button'
           className='profile__add'
-          onClick={handleAddPlaceClick}
+          onClick={onAddPlace}
         ></button>
       </section>
       <section className='elements elements-position'>
