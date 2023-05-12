@@ -17,7 +17,7 @@ function App() {
             <button type='button' className='popup__close'></button>
             <h2 className='popup__title'>Редактировать профиль</h2>
             <form
-              name='profile-form'
+              name='profile-edit'
               className='form form_profile-edit'
               novalidate
             >
