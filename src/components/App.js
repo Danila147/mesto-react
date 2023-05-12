@@ -12,6 +12,33 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
 
+  React.useEffect(() => {
+    if (
+      isEditProfilePopupOpen ||
+      isAddPlacePopupOpen ||
+      isEditAvatarPopupOpen
+    ) {
+      document.addEventListener('keydown', handleEscClose);
+      document.addEventListener('click', handleOverlayClick);
+    }
+    return () => {
+      document.removeEventListener('keydown', handleEscClose);
+      document.removeEventListener('click', handleOverlayClick);
+    };
+  }, [isEditProfilePopupOpen, isAddPlacePopupOpen, isEditAvatarPopupOpen]);
+
+  function handleEscClose(e) {
+    if (e.key === 'Escape') {
+      closeAllPopups();
+    }
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target.classList.contains('popup__opened')) {
+      closeAllPopups();
+    }
+  }
+
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
   }
@@ -22,6 +49,12 @@ function App() {
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
+  }
+
+  function closeAllPopups() {
+    setIsEditProfilePopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+    setIsEditAvatarPopupOpen(false);
   }
 
   return (
@@ -35,9 +68,15 @@ function App() {
         />
         <Footer />
         <ImagePopup />
-        <PopupWithForm isOpen={isEditProfilePopupOpen} />
-        <PopupWithForm isOpen={isAddPlacePopupOpen} />
-        <PopupWithForm isOpen={isEditAvatarPopupOpen} />
+        <PopupWithForm
+          isOpen={isEditProfilePopupOpen}
+          onClose={closeAllPopups}
+        />
+        <PopupWithForm isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
+        <PopupWithForm
+          isOpen={isEditAvatarPopupOpen}
+          onClose={closeAllPopups}
+        />
       </div>
 
       <template id='card-template'>
