@@ -1,18 +1,33 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import '../index.css';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import ImagePopup from './ImagePopup';
 import PopupWithForm from './PopupWithForm';
-function App() {
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
-    React.useState(false);
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
-    React.useState(false);
+import { api } from '../utils/Api';
 
-  React.useEffect(() => {
+function App() {
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [name, setUserName] = useState('');
+  const [about, setUserAbout] = useState('');
+  const [avatar, setUserAvatar] = useState('');
+
+  useEffect(() => {
+    Promise.all([api.getUserInfo()])
+      .then(([{ name, about, avatar }]) => {
+        setUserName(name);
+        setUserAbout(about);
+        setUserAvatar(avatar);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  useEffect(() => {
     if (
       isEditProfilePopupOpen ||
       isAddPlacePopupOpen ||
@@ -65,6 +80,9 @@ function App() {
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}
+          userName={name}
+          userDescription={about}
+          userAvatar={avatar}
         />
         <Footer />
         <ImagePopup />
