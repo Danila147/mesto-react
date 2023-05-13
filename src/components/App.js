@@ -14,13 +14,15 @@ function App() {
   const [name, setUserName] = useState('');
   const [about, setUserAbout] = useState('');
   const [avatar, setUserAvatar] = useState('');
+  const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    Promise.all([api.getUserInfo()])
-      .then(([{ name, about, avatar }]) => {
+    Promise.all([api.getUserInfo(), api.getCards()])
+      .then(([{ name, about, avatar }, cards]) => {
         setUserName(name);
         setUserAbout(about);
         setUserAvatar(avatar);
+        setCards(cards);
       })
       .catch((error) => {
         console.log(error);
@@ -83,6 +85,7 @@ function App() {
           userName={name}
           userDescription={about}
           userAvatar={avatar}
+          cards={cards}
         />
         <Footer />
         <ImagePopup />
@@ -96,26 +99,6 @@ function App() {
           onClose={closeAllPopups}
         />
       </div>
-
-      <template id='card-template'>
-        <li className='card'>
-          <article className='place'>
-            <img
-              src='https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-              alt=''
-              className='place__image'
-            />
-            <button type='button' className='place__delete'></button>
-            <div className='place__container'>
-              <h2 className='place__title'></h2>
-              <div className='place__likes'>
-                <button type='button' className='place__like'></button>
-                <p className='place__likes-quantity'></p>
-              </div>
-            </div>
-          </article>
-        </li>
-      </template>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import avatar from '../images/profile.jpg';
+import Card from './Card';
 
 function Main({
   onEditAvatar,
@@ -8,6 +9,7 @@ function Main({
   userName,
   userDescription,
   userAvatar,
+  cards,
 }) {
   return (
     <main className='content'>
@@ -33,7 +35,11 @@ function Main({
         ></button>
       </section>
       <section className='elements elements-position'>
-        <ul className='elements__places'></ul>
+        <ul className='elements__places'>
+          {cards.map((card) => (
+            <Card card={card} key={card._id} />
+          ))}
+        </ul>
       </section>
     </main>
   );
