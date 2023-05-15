@@ -1,5 +1,6 @@
 .footer-position {
-  margin: 0 auto 36px;
+  margin: 0 auto;
+  padding-bottom: 36px;
   width: calc(100% - 19px * 2);
 }
 
@@ -17,7 +18,8 @@
 
 @media(min-width: 1024px) {
   .footer-position {
-    margin-bottom: 60px;
+    padding-bottom: 60px;
+    /* margin-bottom: 60px; */
     width: calc(100% - 200px * 2);
   }
 }

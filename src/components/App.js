@@ -11,6 +11,7 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [isConfirmationPopupOpen, setIsConfirmationPopupOpen] = useState(false);
   const [name, setUserName] = useState('');
   const [about, setUserAbout] = useState('');
   const [avatar, setUserAvatar] = useState('');
@@ -33,7 +34,8 @@ function App() {
     if (
       isEditProfilePopupOpen ||
       isAddPlacePopupOpen ||
-      isEditAvatarPopupOpen
+      isEditAvatarPopupOpen ||
+      isConfirmationPopupOpen
     ) {
       document.addEventListener('keydown', handleEscClose);
       document.addEventListener('click', handleOverlayClick);
@@ -42,7 +44,12 @@ function App() {
       document.removeEventListener('keydown', handleEscClose);
       document.removeEventListener('click', handleOverlayClick);
     };
-  }, [isEditProfilePopupOpen, isAddPlacePopupOpen, isEditAvatarPopupOpen]);
+  }, [
+    isEditProfilePopupOpen,
+    isAddPlacePopupOpen,
+    isEditAvatarPopupOpen,
+    isConfirmationPopupOpen,
+  ]);
 
   function handleEscClose(e) {
     if (e.key === 'Escape') {
@@ -68,10 +75,15 @@ function App() {
     setIsEditAvatarPopupOpen(true);
   }
 
+  function handleDeleteClick(card) {
+    setIsConfirmationPopupOpen(true);
+  }
+
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
+    setIsConfirmationPopupOpen(false);
   }
 
   return (
@@ -82,6 +94,7 @@ function App() {
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}
+          onCardDelete={handleDeleteClick}
           userName={name}
           userDescription={about}
           userAvatar={avatar}
@@ -90,13 +103,96 @@ function App() {
         <Footer />
         <ImagePopup />
         <PopupWithForm
+          name={'edit'}
+          title={'Редактировать профиль'}
+          button={'Сохранить'}
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
+          children={
+            <>
+              <input
+                id='userName-input'
+                name='userName'
+                type='text'
+                placeholder='Имя'
+                className='popup__info popup__info_data_name'
+                minlength='2'
+                maxlength='40'
+                required
+              />
+              <span className='popup__span popup__info-error userName-input-error'></span>
+              <input
+                id='userAbout-input'
+                name='userAbout'
+                type='text'
+                placeholder='О себе'
+                className='popup__info popup__info_data_about'
+                minlength='2'
+                maxlength='200'
+                required
+              />
+              <span className='popup__span popup__info-error userAbout-input-error'></span>
+            </>
+          }
         />
-        <PopupWithForm isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
+        <PopupWithForm
+          isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
+          name={'add'}
+          title={'Новое место'}
+          button={'Создать'}
+          children={
+            <>
+              <input
+                id='placeName-input'
+                name='placeName'
+                type='text'
+                placeholder='Название'
+                className='popup__info popup__info_data_place'
+                minlength='2'
+                maxlength='30'
+                required
+              />
+              <span className='popup__span popup__info-error placeName-input-error'></span>
+              <input
+                id='placeLink-input'
+                name='placeLink'
+                type='url'
+                placeholder='Ссылка на картинку'
+                className='popup__info popup__info_data_image'
+                required
+              />
+              <span className='popup__span popup__info-error placeLink-input-error'></span>
+            </>
+          }
+        />
         <PopupWithForm
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
+          name={'avatar'}
+          title={'Обновить аватар'}
+          button={'Сохранить'}
+          children={
+            <>
+              <input
+                className='popup__info'
+                id='avatarEdit-input'
+                type='url'
+                name='avatar'
+                value=''
+                placeholder='Ссылка на картинку'
+                required
+              />
+              <span className='popup__span popup__info-error avatarEdit-input-error'></span>
+            </>
+          }
+        />
+        <PopupWithForm
+          isOpen={isConfirmationPopupOpen}
+          onClose={closeAllPopups}
+          name={'confirm'}
+          title={'Вы уверены?'}
+          button={'Да'}
         />
       </div>
     </div>

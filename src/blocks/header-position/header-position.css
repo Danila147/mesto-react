@@ -1,11 +1,12 @@
 .header-position {
-  margin: 28px 0 42px;
-  padding: 0 27px;
+  margin: 0 0 42px;
+  padding: 28px 27px 30px;
 }
 
 @media(min-width: 768px) {
   .header-position {
-    padding: 0;
+    padding-left: 0;
+    padding-bottom: 42px ;
     margin-left: auto;
     margin-right: auto;
   }
@@ -13,7 +14,7 @@
 
 @media(min-width: 1280px) {
   .header-position {
-    margin: 45px auto 40px;
-    padding: 0 0 41px;
+    /* margin: 0 auto 40px; */
+    padding: 45px 0 41px;
   }
 }
