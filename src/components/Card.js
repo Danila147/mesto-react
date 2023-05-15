@@ -1,10 +1,19 @@
 import React from 'react';
 
-function Card({ card, onCardDelete }) {
+function Card({ card, onCardDelete, onCardClick }) {
+  function handleClick() {
+    onCardClick(card);
+  }
+
   return (
     <li className='card'>
       <article className='place'>
-        <img src={card.link} alt={card.name} className='place__image' />
+        <img
+          src={card.link}
+          alt={card.name}
+          className='place__image'
+          onClick={handleClick}
+        />
         <button
           type='button'
           className='place__delete'

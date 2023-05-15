@@ -7,6 +7,7 @@ function Main({
   onEditProfile,
   onAddPlace,
   onCardDelete,
+  onCardClick,
   userName,
   userDescription,
   userAvatar,
@@ -38,7 +39,12 @@ function Main({
       <section className='elements elements-position'>
         <ul className='elements__places'>
           {cards.map((card) => (
-            <Card card={card} key={card._id} onCardDelete={onCardDelete} />
+            <Card
+              card={card}
+              key={card._id}
+              onCardDelete={onCardDelete}
+              onCardClick={onCardClick}
+            />
           ))}
         </ul>
       </section>
