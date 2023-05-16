@@ -111,12 +111,13 @@ function App() {
         />
         <Footer />
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-        <PopupWithForm>
+        <PopupWithForm
           name={'edit'}
           title={'Редактировать профиль'}
           button={'Сохранить'}
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
+        >
           <input
             id='userName-input'
             name='userName'
@@ -140,12 +141,13 @@ function App() {
           />
           <span className='popup__span popup__info-error userAbout-input-error'></span>
         </PopupWithForm>
-        <PopupWithForm>
+        <PopupWithForm
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
           name={'add'}
           title={'Новое место'}
           button={'Создать'}
+        >
           <input
             id='placeName-input'
             name='placeName'
@@ -167,12 +169,13 @@ function App() {
           />
           <span className='popup__span popup__info-error placeLink-input-error'></span>
         </PopupWithForm>
-        <PopupWithForm>
+        <PopupWithForm
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
           name={'avatar'}
           title={'Обновить аватар'}
           button={'Сохранить'}
+        >
           <input
             className='popup__info'
             id='avatarEdit-input'
