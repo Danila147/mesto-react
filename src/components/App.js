@@ -111,91 +111,78 @@ function App() {
         />
         <Footer />
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-        <PopupWithForm
+        <PopupWithForm>
           name={'edit'}
           title={'Редактировать профиль'}
           button={'Сохранить'}
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
-          children={
-            <>
-              <input
-                id='userName-input'
-                name='userName'
-                type='text'
-                placeholder='Имя'
-                className='popup__info popup__info_data_name'
-                minLength='2'
-                maxLength='40'
-                required
-              />
-              <span className='popup__span popup__info-error userName-input-error'></span>
-              <input
-                id='userAbout-input'
-                name='userAbout'
-                type='text'
-                placeholder='О себе'
-                className='popup__info popup__info_data_about'
-                minLength='2'
-                maxLength='200'
-                required
-              />
-              <span className='popup__span popup__info-error userAbout-input-error'></span>
-            </>
-          }
-        />
-        <PopupWithForm
+          <input
+            id='userName-input'
+            name='userName'
+            type='text'
+            placeholder='Имя'
+            className='popup__info popup__info_data_name'
+            minLength='2'
+            maxLength='40'
+            required
+          />
+          <span className='popup__span popup__info-error userName-input-error'></span>
+          <input
+            id='userAbout-input'
+            name='userAbout'
+            type='text'
+            placeholder='О себе'
+            className='popup__info popup__info_data_about'
+            minLength='2'
+            maxLength='200'
+            required
+          />
+          <span className='popup__span popup__info-error userAbout-input-error'></span>
+        </PopupWithForm>
+        <PopupWithForm>
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
           name={'add'}
           title={'Новое место'}
           button={'Создать'}
-          children={
-            <>
-              <input
-                id='placeName-input'
-                name='placeName'
-                type='text'
-                placeholder='Название'
-                className='popup__info popup__info_data_place'
-                minLength='2'
-                maxLength='30'
-                required
-              />
-              <span className='popup__span popup__info-error placeName-input-error'></span>
-              <input
-                id='placeLink-input'
-                name='placeLink'
-                type='url'
-                placeholder='Ссылка на картинку'
-                className='popup__info popup__info_data_image'
-                required
-              />
-              <span className='popup__span popup__info-error placeLink-input-error'></span>
-            </>
-          }
-        />
-        <PopupWithForm
+          <input
+            id='placeName-input'
+            name='placeName'
+            type='text'
+            placeholder='Название'
+            className='popup__info popup__info_data_place'
+            minLength='2'
+            maxLength='30'
+            required
+          />
+          <span className='popup__span popup__info-error placeName-input-error'></span>
+          <input
+            id='placeLink-input'
+            name='placeLink'
+            type='url'
+            placeholder='Ссылка на картинку'
+            className='popup__info popup__info_data_image'
+            required
+          />
+          <span className='popup__span popup__info-error placeLink-input-error'></span>
+        </PopupWithForm>
+        <PopupWithForm>
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
           name={'avatar'}
           title={'Обновить аватар'}
           button={'Сохранить'}
-          children={
-            <>
-              <input
-                className='popup__info'
-                id='avatarEdit-input'
-                type='url'
-                name='avatar'
-                value=''
-                placeholder='Ссылка на картинку'
-                required
-              />
-              <span className='popup__span popup__info-error avatarEdit-input-error'></span>
-            </>
-          }
-        />
+          <input
+            className='popup__info'
+            id='avatarEdit-input'
+            type='url'
+            name='avatar'
+            placeholder='Ссылка на картинку'
+            required
+          />
+          <span className='popup__span popup__info-error avatarEdit-input-error'></span>
+        </PopupWithForm>
         <PopupWithForm
           isOpen={isConfirmationPopupOpen}
           onClose={closeAllPopups}
