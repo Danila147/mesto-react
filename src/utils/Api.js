@@ -56,6 +56,14 @@ class Api {
     });
   }
 
+  changeLikeCardStatus(id, status) {
+    if (status) {
+      return this.likeCard(id);
+    } else {
+      return this.unlikeCard(id);
+    }
+  }
+
   likeCard(id) {
     return this._request(`${this._url}/cards/${id}/likes`, {
       method: 'PUT',

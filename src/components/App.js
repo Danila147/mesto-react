@@ -16,6 +16,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
   const [selectedCard, setSelectedCard] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     Promise.all([api.getUserInfo(), api.getCards()])
@@ -79,6 +80,40 @@ function App() {
     setIsConfirmationPopupOpen(true);
   }
 
+  function handleCardLike(card) {
+    const isLiked = card.likes.some((user) => user._id === currentUser._id);
+    api
+      .changeLikeCardStatus(card._id, !isLiked)
+      .then((newCard) => {
+        setCards((state) =>
+          state.map((currentCard) =>
+            currentCard._id === card._id ? newCard : currentCard
+          )
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  function handleCardDelete(card) {
+    setIsLoading(true);
+    api
+      .deleteCard(card._id)
+      .then(() => {
+        setCards((state) =>
+          state.filter((currentCard) => currentCard._id !== card._id)
+        );
+        closeAllPopups();
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }
+
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
@@ -102,6 +137,7 @@ function App() {
             onEditAvatar={handleEditAvatarClick}
             onCardDelete={handleDeleteClick}
             onCardClick={handleCardClick}
+            onCardLike={handleCardLike}
             cards={cards}
           />
           <Footer />
@@ -187,6 +223,7 @@ function App() {
             name={'confirm'}
             title={'Вы уверены?'}
             button={'Да'}
+            onConfirm={handleCardDelete}
           />
         </CurrentUserContext.Provider>
       </div>
