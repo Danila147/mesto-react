@@ -87,6 +87,17 @@ class Api {
       }),
     });
   }
+
+  setUserInfo(data) {
+    return this._request(`${this._url}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.name,
+        about: data.about,
+      }),
+    });
+  }
 }
 
 const api = new Api({
