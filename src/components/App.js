@@ -6,6 +6,7 @@ import Footer from './Footer';
 import ImagePopup from './ImagePopup';
 import PopupWithForm from './PopupWithForm';
 import EditProfilePopup from './EditProfilePopup';
+import EditAvatarPopup from './EditAvatarPopup';
 import { api } from '../utils/Api';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
@@ -143,6 +144,22 @@ function App() {
       });
   }
 
+  function handleUpdateAvatar(data) {
+    setIsLoading(true);
+    api
+      .setAvatar(data)
+      .then((res) => {
+        setCurrentUser(res);
+        closeAllPopups();
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }
+
   return (
     <div className='root'>
       <div className='page'>
@@ -193,23 +210,12 @@ function App() {
             />
             <span className='popup__span popup__info-error placeLink-input-error'></span>
           </PopupWithForm>
-          <PopupWithForm
+          <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
-            name={'avatar'}
-            title={'Обновить аватар'}
-            button={'Сохранить'}
-          >
-            <input
-              className='popup__info'
-              id='avatarEdit-input'
-              type='url'
-              name='avatar'
-              placeholder='Ссылка на картинку'
-              required
-            />
-            <span className='popup__span popup__info-error avatarEdit-input-error'></span>
-          </PopupWithForm>
+            onUpdateAvatar={handleUpdateAvatar}
+            isLoading={isLoading}
+          />
           <PopupWithForm
             isOpen={isConfirmationPopupOpen}
             onClose={closeAllPopups}
