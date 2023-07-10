@@ -35,7 +35,7 @@ function Card({ card, onCardDelete, onCardClick, onCardLike }) {
           <button
             type='button'
             className='place__delete'
-            onClick={onCardDelete}
+            onClick={handleDeleteClick}
           ></button>
         )}
         <div className='place__container'>
